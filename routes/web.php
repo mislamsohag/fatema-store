@@ -17,4 +17,12 @@ Route::post('/verify-otp', [UsersController::class, 'VerifyOTP']);
 // Token Verify with Middleware
 Route::post('/reset-password', [UsersController::class, 'ResetPassword'])
 ->middleware([TokenVeficationMiddleware::class]);
+
+
+// AllPages View Routes
+Route::get('/registration-page', [UsersController::class, 'RegistrationPage']);
+Route::get('/login-page', [UsersController::class, 'LoginPage']);
+Route::get('/sendOTP-page', [UsersController::class, 'SendOTPPage']);
+Route::get('/verifyOTP-page', [UsersController::class, 'VerifyOTPPage']);
+Route::get('/passwordReset-page', [UsersController::class, 'PasswordResetPage']);
  
