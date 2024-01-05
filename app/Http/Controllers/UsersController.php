@@ -42,14 +42,14 @@ class UsersController extends Controller
             ]);
 
             return response()->json([
-                'status' => 'Success',
+                'status' => 'success',
                 'message' => 'Registration is successfully'
-            ]);
+            ],200);
         } catch (Exception $exception) {
             return response()->json([
                 'status' => 'failed',
                 'message' => $exception->getMessage(),
-            ]);
+            ],401);
         }
 
     }
@@ -65,9 +65,8 @@ class UsersController extends Controller
             $token = JWTToken::CreateToken($request->input('email'));
             return response()->json([
                 'status' => 'success',
-                'message' => 'Login success',
-                'token' => $token
-            ]);
+                'message' => 'Login success'
+            ],200)->cookie('token', $token, 60*24*30);
         } else {
             return response()->json([
                 'status' => 'failed',
@@ -96,9 +95,9 @@ class UsersController extends Controller
             // OTP Update on Database by User Model
             User::where('email', '=', $email)->update(['otp' => $otp]);
             return response()->json([
-                'status' => 'OTP Send Success',
+                'status' => 'success',
                 'message' => '4 digit OTP send your email successfully'
-            ]);
+            ],200);
         }
 
     }
@@ -124,9 +123,8 @@ class UsersController extends Controller
             $token=JWTToken::CreateTokenForSetPassword($request->input('email'));
             return response()->json([
                 'status'=>'success',
-                'message'=>'OTP verification successfully',
-                'token'=>$token
-            ]);
+                'message'=>'OTP verification successfully'
+            ],200)->cookie('token', $token, 60*24*30);
         }
     }
 
@@ -139,13 +137,19 @@ class UsersController extends Controller
             return response()->json([
                 'status'=>'success',
                 'message'=>'User password reset successfully'
-            ]);            
+            ],200);            
         }
         catch(Exception $e){
             return response()->json([
                 'status'=>'failed',
-                'message'=>'Request unauthorized'
-            ]);
+                'message'=>$e
+            ],200);
         }
     }
+
+    function UserLogout(){
+        return redirect('/login-page')->cookie('token','',-1);
+    }
+
+
 }

@@ -40,7 +40,10 @@
     </div>
 </div>
 
-<script>
+
+
+
+<!-- <script>
     getProfile();
     async function getProfile(){
         showLoader();
@@ -99,5 +102,7 @@
         }
     }
 
-</script>
+</script> -->
+
+
 

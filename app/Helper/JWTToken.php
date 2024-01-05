@@ -38,9 +38,8 @@ class JWTToken
     {   
           
         // dd($token);
-        /* try {
-            if ($token == null) {
-                
+        try {
+            if ($token == null) {                
                 return 'unauthorized';
             } else {
                 $key = env('JWT_KEY');
@@ -48,11 +47,7 @@ class JWTToken
                 return $decode->userEmail;
             }
         } catch (Exception $e) {
-            return "unauthorized";
-        } */
-        
-        $key = env('JWT_KEY');
-                $decode = JWT::decode($token, new Key($key, 'HS256'));
-                return $decode->userEmail;  
+            return $e;
+        }
     }
 }

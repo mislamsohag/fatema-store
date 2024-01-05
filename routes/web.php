@@ -7,7 +7,10 @@ use App\Http\Controllers\UsersController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.dashboard.dashboard-page');
+});
+Route::get('/dashboard', function () {
+    return view('pages.dashboard.dashboard-page');
 });
 
 Route::post('/user-registration', [UsersController::class, 'UserRegistration']);
@@ -25,4 +28,6 @@ Route::get('/login-page', [UsersController::class, 'LoginPage']);
 Route::get('/sendOTP-page', [UsersController::class, 'SendOTPPage']);
 Route::get('/verifyOTP-page', [UsersController::class, 'VerifyOTPPage']);
 Route::get('/passwordReset-page', [UsersController::class, 'PasswordResetPage']);
- 
+
+//Logout
+Route::get('/logout', [UsersController::class, 'UserLogout']);
