@@ -25,7 +25,7 @@
 </div>
 
 
-<script>
+<!-- <script>
     async function Save() {
         let categoryName = document.getElementById('categoryName').value;
         if (categoryName.length === 0) {
@@ -46,4 +46,4 @@
             }
         }
     }
-</script>
+</script> -->

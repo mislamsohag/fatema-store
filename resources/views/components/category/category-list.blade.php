@@ -30,7 +30,7 @@
 </div>
 </div>
 
-<script>
+<!-- <script>
 
 getList();
 
@@ -82,5 +82,5 @@ async function getList() {
 }
 
 
-</script>
+</script> -->
 

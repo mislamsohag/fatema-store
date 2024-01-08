@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class TokenVeficationMiddleware
+class TokenVerificationMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,12 +19,10 @@ class TokenVeficationMiddleware
         $token=$request->cookie('token');
         $result=JWTToken::VerifyToken($token);
         if($result=="unauthorized"){
-            return response()->json([
-                'status'=>'failed',
-                'message'=>'unauthorized'
-            ]);
+            return redirect('/login-page');
         }else{
-            $request->headers->set('email', $result);
+            $request->headers->set('email', $result->userEmail);
+            $request->headers->set('id', $result->userId);
             return $next($request);
         }
     }

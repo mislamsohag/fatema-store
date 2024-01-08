@@ -43,11 +43,11 @@
 
 
 
-<!-- <script>
+<script>
     getProfile();
     async function getProfile(){
         showLoader();
-        let res=await axios.get("/user-profile")
+        let res=await axios.get("/userProfile")
         hideLoader();
         if(res.status===200 && res.data['status']==='success'){
             let data=res.data['data'];
@@ -64,8 +64,6 @@
     }
 
     async function onUpdate() {
-
-
         let firstName = document.getElementById('firstName').value;
         let lastName = document.getElementById('lastName').value;
         let mobile = document.getElementById('mobile').value;
@@ -85,12 +83,14 @@
         }
         else{
             showLoader();
-            let res=await axios.post("/user-update",{
+
+            let res=await axios.post("/profileUpdate",{
                 firstName:firstName,
                 lastName:lastName,
                 mobile:mobile,
                 password:password
-            })
+            });
+
             hideLoader();
             if(res.status===200 && res.data['status']==='success'){
                 successToast(res.data['message']);
@@ -102,7 +102,7 @@
         }
     }
 
-</script> -->
+</script>
 
 
 
