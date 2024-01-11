@@ -9,16 +9,16 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-                                <label class="form-label">Customer Name *</label>
-                                <input type="text" class="form-control" id="customerNameUpdate">
+                                <label class="form-label">Customer Name <span class="text-danger">*</span></label>
+                                <input id="customerNameUpdate" type="text" class="form-control">
 
-                                <label class="form-label mt-3">Customer Email *</label>
-                                <input type="text" class="form-control" id="customerEmailUpdate">
+                                <label class="form-label mt-3">Customer Email <span class="text-danger">*</span></label>
+                                <input id="customerEmailUpdate" type="text" class="form-control">
 
-                                <label class="form-label mt-3">Customer Mobile *</label>
-                                <input type="text" class="form-control" id="customerMobileUpdate">
+                                <label class="form-label mt-3">Customer Mobile <span class="text-danger">*</span></label>
+                                <input id="customerMobileUpdate" type="text" class="form-control">
 
-                                <input type="text" class="d-none" id="updateID">
+                                <input id="updateID" type="text" class="d-none">
                             </div>
                         </div>
                     </div>
@@ -39,9 +39,13 @@
 
     async function FillUpUpdateForm(id){
         document.getElementById('updateID').value=id;
+        
         showLoader();
-        let res=await axios.post("/customer-by-id",{id:id})
+        let res=await axios.post("/single-customer",{
+            id:id
+        });
         hideLoader();
+        
         document.getElementById('customerNameUpdate').value=res.data['name'];
         document.getElementById('customerEmailUpdate').value=res.data['email'];
         document.getElementById('customerMobileUpdate').value=res.data['mobile'];
@@ -49,12 +53,10 @@
 
 
     async function Update() {
-
         let customerName = document.getElementById('customerNameUpdate').value;
         let customerEmail = document.getElementById('customerEmailUpdate').value;
         let customerMobile = document.getElementById('customerMobileUpdate').value;
         let updateID = document.getElementById('updateID').value;
-
 
         if (customerName.length === 0) {
             errorToast("Customer Name Required !")
@@ -66,19 +68,18 @@
             errorToast("Customer Mobile Required !")
         }
         else {
-
             document.getElementById('update-modal-close').click();
 
             showLoader();
-
-            let res = await axios.post("/update-customer",{name:customerName,email:customerEmail,mobile:customerMobile,id:updateID})
-
+            let res = await axios.post("/customer-update",{
+                name:customerName,
+                email:customerEmail,
+                mobile:customerMobile,
+                id:updateID})
             hideLoader();
 
             if(res.status===200 && res.data===1){
-
                 successToast('Request completed');
-
                 document.getElementById("update-form").reset();
 
                 await getList();

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <hr class="bg-dark "/>
-            <table class="table" id="tableData">
+            <table id="tableData" class="table">
                 <thead>
                 <tr class="bg-light">
                     <th>No</th>
@@ -37,7 +37,7 @@ getList();
 
 async function getList() {
     showLoader();
-    let res=await axios.get("/list-customer");
+    let res=await axios.get("/customer-list");
     hideLoader();
 
     let tableList=$("#tableList");
@@ -58,7 +58,7 @@ async function getList() {
                     </td>
                  </tr>`
         tableList.append(row)
-    })
+    });
 
     $('.editBtn').on('click', async function () {
            let id= $(this).data('id');
@@ -73,7 +73,7 @@ async function getList() {
     })
 
     new DataTable('#tableData',{
-        order:[[0,'desc']],
+        order:[[0,'asc']],
         lengthMenu:[5,10,15,20,30]
     });
 

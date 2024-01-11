@@ -2,18 +2,18 @@
     <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Customer</h5>
+                    <h5 id="exampleModalLabel" class="modal-title">Create Customer</h5>
                 </div>
                 <div class="modal-body">
                     <form id="save-form">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-                                <label class="form-label">Customer Name *</label>
+                                <label class="form-label">Customer Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="customerName">
-                                <label class="form-label">Customer Email *</label>
+                                <label class="form-label">Customer Email <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="customerEmail">
-                                <label class="form-label">Customer Mobile *</label>
+                                <label class="form-label">Customer Mobile <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="customerMobile">
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                    <button onclick="Save()" id="save-btn" class="btn bg-gradient-success" >Save</button>
+                    <button onclick="CreateCustomer()" id="save-btn" class="btn bg-gradient-success">Create</button>
                 </div>
             </div>
     </div>
@@ -30,9 +30,7 @@
 
 
 <script>
-
-    async function Save() {
-
+    async function CreateCustomer() {
         let customerName = document.getElementById('customerName').value;
         let customerEmail = document.getElementById('customerEmail').value;
         let customerMobile = document.getElementById('customerMobile').value;
@@ -47,17 +45,18 @@
             errorToast("Customer Mobile Required !")
         }
         else {
-
             document.getElementById('modal-close').click();
 
             showLoader();
-            let res = await axios.post("/create-customer",{name:customerName,email:customerEmail,mobile:customerMobile})
+            let res = await axios.post("/customer-create",{
+                name:customerName,
+                email:customerEmail,
+                mobile:customerMobile
+            });
             hideLoader();
 
             if(res.status===201){
-
                 successToast('Request completed');
-
                 document.getElementById("save-form").reset();
 
                 await getList();
