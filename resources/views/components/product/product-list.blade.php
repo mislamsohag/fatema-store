@@ -32,14 +32,14 @@
 
 <script>
 
-getList();
+ProductsList();
 
 
-async function getList() {
+async function ProductsList() {
 
 
     showLoader();
-    let res=await axios.get("/list-product");
+    let res=await axios.get("/product-list");
     hideLoader();
 
     let tableList=$("#tableList");
@@ -50,7 +50,7 @@ async function getList() {
 
     res.data.forEach(function (item,index) {
         let row=`<tr>
-                    <td><img class="w-15 h-auto" alt="" src="${item['img_url']}"></td>
+                    <td><img class="w-50 h-auto" alt="" src="${item['img_url']}"></td>
                     <td>${item['name']}</td>
                     <td>${item['price']}</td>
                     <td>${item['unit']}</td>
@@ -65,6 +65,7 @@ async function getList() {
     $('.editBtn').on('click', async function () {
            let id= $(this).data('id');
            let filePath= $(this).data('path');
+           
            await FillUpUpdateForm(id,filePath)
            $("#update-modal").modal('show');
     })
@@ -81,7 +82,7 @@ async function getList() {
 
     new DataTable('#tableData',{
         order:[[0,'desc']],
-        lengthMenu:[5,10,15,20,30]
+        lengthMenu:[10,20,30,50,]
     });
 
 }

@@ -11,7 +11,7 @@
                             <div class="col-12 p-1">
 
                                 <label class="form-label">Category</label>
-                                <select type="text" class="form-control form-select" id="productCategory">
+                                <select id="productCategory" type="text" class="form-control form-select">
                                     <option value="">Select Category</option>
                                 </select>
 
@@ -29,7 +29,7 @@
                                 <br/>
 
                                 <label class="form-label">Image</label>
-                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="productImg">
+                                <input id="productImg" oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file" class="form-control">
 
                             </div>
                         </div>
@@ -49,10 +49,10 @@
 
 
 
-    FillCategoryDropDown();
+    ProductCategoryDropDown();
 
-    async function FillCategoryDropDown(){
-        let res = await axios.get("/list-category")
+    async function ProductCategoryDropDown(){
+        let res = await axios.get("/category-list")
         res.data.forEach(function (item,i) {
             let option=`<option value="${item['id']}">${item['name']}</option>`
             $("#productCategory").append(option);
@@ -102,13 +102,13 @@
             }
 
             showLoader();
-            let res = await axios.post("/create-product",formData,config)
+            let res = await axios.post("/product-store",formData,config)
             hideLoader();
 
             if(res.status===201){
                 successToast('Request completed');
                 document.getElementById("save-form").reset();
-                await getList();
+                await ProductsList();
             }
             else{
                 errorToast("Request fail !")

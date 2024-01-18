@@ -127,7 +127,7 @@
     </div>
 
 
-    <script>
+    <!-- <script>
 
 
         (async ()=>{
@@ -355,7 +355,7 @@
 
         }
 
-    </script>
+    </script> -->
 
 
 

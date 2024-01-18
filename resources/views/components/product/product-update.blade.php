@@ -28,7 +28,7 @@
                                 <img class="w-15" id="oldImg" src="{{asset('images/default.jpg')}}"/>
                                 <br/>
                                 <label class="form-label mt-2">Image</label>
-                                <input oninput="oldImg.src=window.URL.createObjectURL(this.files[0])"  type="file" class="form-control" id="productImgUpdate">
+                                <input id="productImgUpdate" oninput="oldImg.src=window.URL.createObjectURL(this.files[0])"  type="file" class="form-control">
 
                                 <input type="text" class="d-none" id="updateID">
                                 <input type="text" class="d-none" id="filePath">
@@ -55,7 +55,7 @@
 
 
     async function UpdateFillCategoryDropDown(){
-        let res = await axios.get("/list-category")
+        let res = await axios.get("/category-list")
         res.data.forEach(function (item,i) {
             let option=`<option value="${item['id']}">${item['name']}</option>`
             $("#productCategoryUpdate").append(option);
@@ -73,7 +73,7 @@
         showLoader();
         await UpdateFillCategoryDropDown();
 
-        let res=await axios.post("/product-by-id",{id:id})
+        let res=await axios.post("/single-product",{id:id});
         hideLoader();
 
         document.getElementById('productNameUpdate').value=res.data['name'];
@@ -118,7 +118,7 @@
             formData.append('id',updateID)
             formData.append('name',productNameUpdate)
             formData.append('price',productPriceUpdate)
-            formData.append('unit',productNameUpdate)
+            formData.append('unit',productUnitUpdate)
             formData.append('category_id',productCategoryUpdate)
             formData.append('file_path',filePath)
 
@@ -129,13 +129,13 @@
             }
 
             showLoader();
-            let res = await axios.post("/update-product",formData,config)
+            let res = await axios.post("/product-update",formData,config)
             hideLoader();
 
             if(res.status===200 && res.data===1){
                 successToast('Request completed');
                 document.getElementById("update-form").reset();
-                await getList();
+                await ProductsList();
             }
             else{
                 errorToast("Request fail !")

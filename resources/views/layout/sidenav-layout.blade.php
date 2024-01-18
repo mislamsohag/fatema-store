@@ -77,7 +77,7 @@
         <span class="side-bar-item-caption">Dashboard</span>
     </a>
 
-    <a href="{{url('/customerPage')}}" class="side-bar-item">
+    <a href="{{url('/customer-page')}}" class="side-bar-item">
         <i class="bi bi-people"></i>
         <span class="side-bar-item-caption">Customer</span>
     </a>
@@ -87,17 +87,17 @@
         <span class="side-bar-item-caption">Category</span>
     </a>
 
-    <a href="{{url('/productPage')}}" class="side-bar-item">
+    <a href="{{url('/product-page')}}" class="side-bar-item">
         <i class="bi bi-bag"></i>
         <span class="side-bar-item-caption">Product</span>
     </a>
 
-    <a href="{{url('/salePage')}}" class="side-bar-item">
+    <a href="{{url('/sale-page')}}" class="side-bar-item">
         <i class="bi bi-currency-dollar"></i>
         <span class="side-bar-item-caption">Create Sale</span>
     </a>
 
-    <a href="{{url('/invoicePage')}}" class="side-bar-item">
+    <a href="{{url('/invoice-page')}}" class="side-bar-item">
         <i class="bi bi-receipt"></i>
         <span class="side-bar-item-caption">Invoice</span>
     </a>
