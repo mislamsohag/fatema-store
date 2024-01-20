@@ -13,22 +13,24 @@ class UsersController extends Controller
 
     function RegistrationPage(){
             return view('pages.auth.registration-page');
-        }        
+        }
+
     function LoginPage(){
         return view('pages.auth.login-page');
     }
+
     function SendOTPPage(){
         return view('pages.auth.send-otp-page');
     }
+
     function VerifyOTPPage(){
         return view('pages.auth.verify-otp-page');
     }
+    
     function PasswordResetPage(){
         return view('pages.auth.reset-pass-page');
     }
-    function DashboardPage(){
-        return view('pages.dashboard.dashboard-page');
-    }
+    
     function ProfilePage(){
         return view('pages.dashboard.profile-page');
     }

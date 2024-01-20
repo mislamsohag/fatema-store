@@ -45,7 +45,7 @@
     <tbody>
     <tr>
         <td>Sales Report</td>
-        <td>{{$FormDate}} to {{$ToDate}}</td>
+        <td>{{$fromDate}} to {{$toDate}}</td>
         <td>{{$total}}</td>
         <td>{{$discount}}</td>
         <td>{{$vat}}</td>

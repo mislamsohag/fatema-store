@@ -167,11 +167,11 @@
 
 
 
-<!-- <script>
+<script>
     getList();
     async function getList() {
         showLoader();
-        let res=await axios.get("/summary");
+        let res=await axios.get("/dashboard-summary");
 
         document.getElementById('product').innerText=res.data['product']
         document.getElementById('category').innerText=res.data['category']
@@ -184,6 +184,6 @@
 
         hideLoader();
     }
-</script> -->
+</script>
 
 

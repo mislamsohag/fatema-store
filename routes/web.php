@@ -3,16 +3,19 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 
 
 
-Route::get('/', [UsersController::class, 'DashboardPage']);
-Route::get('/home', [UsersController::class, 'DashboardPage']);
+Route::get('/', [HomeController::class, 'HomePage']);
+Route::get('/home', [HomeController::class, 'HomePage']);
 
 
 // Auth Pages View Routes
@@ -69,3 +72,15 @@ Route::post('/single-product', [ProductController::class, 'SingleProduct'])->mid
 // Invoice routes
 Route::get('/invoice-page', [InvoiceController::class, 'InvoicePage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/sale-page', [InvoiceController::class, 'SalePage'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/invoice-store', [InvoiceController::class, 'InvoiceStore'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/invoice-select', [InvoiceController::class, 'InvoiceSelect'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/invoice-details', [InvoiceController::class, 'InvoiceDetails'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/invoice-delete', [InvoiceController::class, 'InvoiceDelete'])->middleware([TokenVerificationMiddleware::class]);
+
+// Dashboard or Summery Page Routes
+Route::get('/dashboard', [DashboardController::class, 'DashboardPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/dashboard-summary', [DashboardController::class, 'DashboardSummary'])->middleware([TokenVerificationMiddleware::class]);
+
+
+Route::get('/report-page', [ReportController::class, 'ReportPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/sales-report/{fromDate}/{toDate}', [ReportController::class, 'ReportGenerate'])->middleware([TokenVerificationMiddleware::class]);

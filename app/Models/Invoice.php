@@ -18,6 +18,10 @@ class Invoice extends Model
         'customer_id'
     ];
 
+    protected $attributes=[
+        'discount'=>0
+];
+
     function customer():BelongsTo{
         return $this->belongsTo(Customer::class);
     }

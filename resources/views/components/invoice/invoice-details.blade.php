@@ -17,9 +17,9 @@
                                 <p class="text-xs mx-0 my-1">User ID:  <span id="CId"></span> </p>
                             </div>
                             <div class="col-4">
-                                <img class="w-40" src="{{"images/logo.png"}}">
+                                <img class="w-40" src="{{'images/logo.png'}}">
                                 <p class="text-bold mx-0 my-1 text-dark">Invoice  </p>
-                                <p class="text-xs mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
+                                <p class="text-xs mx-0 my-1">Date: {{ date('d-m-Y') }} </p>
                             </div>
                         </div>
                         <hr class="mx-0 my-2 p-0 bg-secondary"/>
@@ -44,7 +44,7 @@
                             <div class="col-12">
                                 <p class="text-bold text-xs my-1 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i> <span id="total"></span></p>
                                 <p class="text-bold text-xs my-2 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>  <span id="payable"></span></p>
-                                <p class="text-bold text-xs my-1 text-dark"> VAT(5%): <i class="bi bi-currency-dollar"></i>  <span id="vat"></span></p>
+                                <p class="text-bold text-xs my-1 text-dark"> VAT(7.5%): <i class="bi bi-currency-dollar"></i>  <span id="vat"></span></p>
                                 <p class="text-bold text-xs my-1 text-dark"> Discount: <i class="bi bi-currency-dollar"></i>  <span id="discount"></span></p>
                             </div>
 
@@ -91,16 +91,16 @@
             invoiceList.append(row)
         });
 
-
-
         $("#details-modal").modal('show')
     }
+
 
     function PrintPage() {
         let printContents = document.getElementById('invoice').innerHTML;
         let originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
+        
         document.body.innerHTML = originalContents;
         setTimeout(function() {
             location.reload();
